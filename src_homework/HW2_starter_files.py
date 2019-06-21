@@ -6,7 +6,7 @@ from pandas import DataFrame
 import matplotlib.pyplot as plt
 import os
 import zipfile
-from src.config import COMMON_COLUMN
+from src_homework.config import COMMON_COLUMN
 
 
 # data pre processing
@@ -90,7 +90,6 @@ def get_user_session_data(parent_folder, user_id, user_session_id):
 
     data = sub_data1.merge(sub_data2, on = ['EventTime', 'ActivityID'], how = 'outer')
 
-
     return data
 
 # pick the user as well as activities and extract 3 out of 6 features
@@ -109,8 +108,8 @@ activity = list(set(data_feature['ActivityID']))
 
 
 # visualize of the features you pick
-from src.utilis import time_series_plot
-save_path = 'result/event_time_series'
+from src_homework.utilis import time_series_plot
+save_path = 'result_hw/event_time_series'
 for fea  in feature:
     sub_data = data_feature[['EventTime', 'ActivityID', fea]].copy()
     time_series_plot(sub_data, fea, save_path)
@@ -208,7 +207,7 @@ def get_neigbor_data(data, t, size):
 # Calucate and plot curvature and torsion of the features you pick
 # reduce the size of EventTime
 try:
-    os.makedirs((os.path.join('result', 'curvature_torsion')))
+    os.makedirs((os.path.join('result_hw', 'curvature_torsion')))
 except:
     pass
 
@@ -241,5 +240,5 @@ for act in activity:
     plt.subplot(212)
     plt.plot(result_t['time'], result_t['torsion'])
     plt.title('torsion')
-    plt.savefig(os.path.join('result', 'curvature_torsion', '{}.png'.format(act)))
+    plt.savefig(os.path.join('result_hw', 'curvature_torsion', '{}.png'.format(act)))
     plt.show()

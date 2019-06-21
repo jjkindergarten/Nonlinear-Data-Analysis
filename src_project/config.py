@@ -1,0 +1,1 @@
+COMMON_COLUMN = ['Systime', 'EventTime', 'ActivityID', 'Phone_orientation', 't']
